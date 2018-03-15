@@ -1,3 +1,5 @@
+'use strict';
+
 import React, {Component} from 'react';
 import {DeviceEventEmitter} from 'react-native'
 import {
@@ -20,6 +22,7 @@ import {
 export class LoginScreen extends Component {
     static navigationOptions = {
         title: 'LoginScreen',
+        header:null
     };
 
     constructor(props) {
@@ -30,17 +33,33 @@ export class LoginScreen extends Component {
     render() {
         return (
             <View>
-                <Text>请输入用户名: </Text>
-                {/*<TextInput style={[styles.textinput]} placeholder='请输入用户名'/>
-                <Text style={[styles.textview]}>请输入密码: </Text>
-                <TextInput style={[styles.textinput]} placeholder='请输入密码'/>
+                <Text style={{
+                    width: 10, height: 60,
+                }}>天气预报</Text>
+                <View style={{flexDirection: 'row', justifyContent: "center", marginTop: 250}}>
+                    <Image source={require('../image/username.png')} style={{
+                        width: 30, height: 30, alignSelf: "flex-end",
+                        marginBottom: 5
+                    }}/>
+                    <TextInput style={[styles.textinput]} placeholder='请输入用户名'/>
+                </View>
 
-                <Button
-                    title="Learn More"
-                    color="#841584"
-                    accessibilityLabel="Learn more about this purple button"
-                />
-*/}
+                <View style={{flexDirection: 'row', justifyContent: "center", marginTop: 5}}>
+                    <Image source={require('../image/password.png')}
+                           style={{width: 30, height: 30, marginBottom: 5, alignSelf: "flex-end"}}/>
+                    <TextInput style={[styles.textinput]} placeholder='请输入密码'/>
+                </View>
+
+                <View style={{marginTop: 25,width:250, alignSelf: "center"}}>
+                    <Button
+                        title="登录"
+                        color="#8065df"
+                        accessibilityLabel="login"
+                        onPress={onButtonPress}
+                    />
+                </View>
+
+
             </View>
         );
     }
@@ -53,19 +72,25 @@ const styles = StyleSheet.create(
             width: 100, height: 30
         },
         textinput: {
-            width: 50, height: 30
+            width: 200,
         },
-        button:{
+        button: {
             width: 50, height: 30
         },
         stop: {
             width: 50, height: 30
+        }, bigblue: {
+            color: 'blue',
+            fontWeight: 'bold',
+            fontSize: 30,
+        },
+        red: {
+            color: 'red'
         },
     }
 );
 
 
-/*
 const onButtonPress = () => {
     Alert.alert('Button has been pressed!');
-};*/
+};
