@@ -33,10 +33,15 @@ export class LoginScreen extends Component {
     render() {
         return (
             <View>
-                <Text style={{
-                    width: 10, height: 60,
-                }}>天气预报</Text>
-                <View style={{flexDirection: 'row', justifyContent: "center", marginTop: 250}}>
+
+                <View style={{flexDirection: 'row', justifyContent: "center", marginTop: 100}}>
+                    <Text style={{
+                        width: 150, height: 60,fontSize:28,textAlign:'center',
+                    }}>天气预报</Text>
+                </View>
+
+
+                <View style={{flexDirection: 'row', justifyContent: "center", marginTop: 100}}>
                     <Image source={require('../image/username.png')} style={{
                         width: 30, height: 30, alignSelf: "flex-end",
                         marginBottom: 5
