@@ -1,25 +1,40 @@
 import { combineReducers } from 'redux';
-import { INCREASE, DECREASE, RESET} from '../actions/actionsTypes';
+import { LOGIN} from '../actions/actionsTypes';
+
+import {
+    Alert,
+    Text,
+    Image,
+    View,
+    Animated,
+    AppRegistry,
+    StyleSheet,
+    TextInput,
+    ScrollView,
+    FlatList,
+    SectionList,
+    TouchableOpacity,
+    Button
+} from 'react-native';
 
 // 原始默认state
 const defaultState = {
-    count: 5,
-    factor: 1
+    userName: "",
+    passWord: "",
+    isSuccess:false
 }
 
-function counter(state = defaultState, action) {
+function getNewState(state = defaultState, action) {
     switch (action.type) {
-        case INCREASE:
-            return { ...state, count: state.count + state.factor };
-        case DECREASE:
-            return { ...state, count: state.count - state.factor };
-        case RESET:
-            return { ...state, count: 0 };
+        case LOGIN:
+            Alert.alert("AAA","=="+state.userName+"==="+state.passWord);
+            return { ...state, isSuccess: true };
         default:
-            return state;
+            return defaultState;
+
     }
 }
 
 export default combineReducers({
-    counter
+    getNewState
 });
