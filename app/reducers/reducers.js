@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { LOGIN,SWITCHPAGER,REGISTER} from '../actions/actionsTypes';
-import {configureRealm,createData,filteredData} from '../realm/configure';
+import { createData,filteredData} from '../realm/configure';
 import {
     Alert,
 } from 'react-native';
@@ -10,13 +10,19 @@ import {RegisterPager} from "../pager/RegisterPager";
 const defaultState = {
     userName: "",
     passWord: "",
-    isSuccess:false
 }
 
 function getNewState(state = defaultState, action) {
     switch (action.type) {
         case LOGIN:
-            return { ...state, isSuccess: true };
+            let user= filteredData(action.userName)[0];
+            if(user!==undefined&&user.passWordHax===action.passWord){
+                action.invoke(true);
+            }else {
+                //我本来想在这个文件里把Navigation搞过来的，然而一直报错
+                action.invoke(false);
+            }
+            return { ...state };
         case SWITCHPAGER:
 
             return { ...state };
@@ -24,11 +30,10 @@ function getNewState(state = defaultState, action) {
             if(action.passWord!==action.rePassWord){
                 Alert.alert("错误","密码两次输入不一致");
             }else {
-                configureRealm();
                 let isSuccess=createData(action.userName,action.passWord);
                 if(isSuccess){
                     let user= filteredData(action.userName);
-                    Alert.alert("成功",action.userName+"注册成功！"+action.passWord);
+                    Alert.alert("成功",action.userName+"注册成功！"+user.userName);
                 }else {
                     Alert.alert("错误","已经有这个用户了"+action.userName);
                 }

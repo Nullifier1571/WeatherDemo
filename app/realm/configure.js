@@ -20,6 +20,9 @@ export function configureRealm() {
 // 增加
 export function createData(userName,passWordHax) {
 
+    if(realm===undefined){
+        realm= new Realm({schemaVersion:2,schema: [UserSchema]});
+    }
     let user=filteredData(userName);
     if(user!=null&&user.length===1){
         //已经有一个这个名字的用户了
@@ -35,10 +38,15 @@ export function createData(userName,passWordHax) {
 
 // 根据条件查询
 export function filteredData(userName) {
+    if(realm===undefined){
+        realm= new Realm({schemaVersion:2,schema: [UserSchema]});
+    }
+
     // 获取Person对象
     let Users = realm.objects('User');
 
     //Demo let tanDogs = dogs.filtered('color = "tan" AND name BEGINSWITH "B"'); 所以怎么把tan换成参数传进来呢？？？？
-    return Users.filtered("userName ="+"\'"+userName+"\'");
+    let user= Users.filtered("userName ="+"\'"+userName+"\'");
+    return user;
 
 }

@@ -19,6 +19,7 @@ import {
     TouchableOpacity,
     Button
 } from 'react-native';
+import {MainScreen} from "./MainScreen";
 
 export class LoginScreen extends Component {
     static navigationOptions = {
@@ -70,7 +71,14 @@ export class LoginScreen extends Component {
                         color="#8065df"
                         accessibilityLabel="login"
                         onPress={()=>{
-                            this.context.store.dispatch(login(this.state.userName,this.state.passWord));
+                            function invoke(isSuccess) {
+                                if(isSuccess){
+                                    navigate("MainScreen", {name: "MainScreen"})
+                                }else {
+                                    Alert.alert("错误","账号密码不对！")
+                                }
+                            }
+                            this.context.store.dispatch(login(this.state.userName,this.state.passWord,invoke));
                         }}
                     />
                 </View>
@@ -81,7 +89,6 @@ export class LoginScreen extends Component {
                         accessibilityLabel="login"
                         onPress={()=>{
                             navigate("RegisterPager", {name: "RegisterPager"})
-                            //this.context.store.dispatch(switchPager());
                         }}
                     />
                 </View>
