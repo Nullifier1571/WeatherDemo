@@ -19,10 +19,12 @@ import {
     Text,
     View
 } from 'react-native';
+import {RegisterPager} from "./pager/RegisterPager";
 
 
 const RootNavigator = StackNavigator({
     LoginScreen: {screen: LoginScreen},
+    RegisterPager: {screen: RegisterPager},
     MainScreen: {screen: MainScreen},
     SettingScreen: {screen: SettingScreen},
 });

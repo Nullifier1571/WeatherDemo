@@ -13,13 +13,16 @@ type State = {
     store: any;
 };
 
+
 export default class Main extends Component<Props> {
     state: State;
     constructor(){
         super();
         this.state={
-            store:configureStore()
+            store:configureStore(),
+
         };
+
     }
 
     render() {
